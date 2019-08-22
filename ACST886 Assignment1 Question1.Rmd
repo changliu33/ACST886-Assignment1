@@ -1,0 +1,25 @@
+---
+title: "ACST886 Assignment1 Question1"
+author: "Chang,Liu"
+date: "20/08/2019"
+output: word_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+Present value of expected cash flows
+$L=\sum^{30}_{t= 1} instal\times ({\frac{1}{1+i}})^t $
+```{r}
+int<-.035
+L<-600000
+f<-function(instal){L-sum(instal*(1/(1+int))^(1:30))}
+root<-uniroot(f,c(0,600000),tol = 0.001)
+instal=root$root
+instal
+```
+
+
+
+

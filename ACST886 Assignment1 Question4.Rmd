@@ -1,0 +1,62 @@
+---
+title: "ACST886 Assignment Question4"
+author: "Chang Liu"
+date: "22/08/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lubridate)
+```
+
+### Process date provided in the question
+The first component is birth date,second component is policy issue date, third date is death date, forth date is the January proceeding to death.
+Since age at the birthday in the policy year of death in this question can be calculated by the difference of birthday on the year of death and the birthday date. Because all three person had their death birthday death in the same policy year.so the fifth component is the death birthday of 3 lives.
+
+```{r}
+lifeA<-strptime(c('1965-05-15','1985-07-21','1994-06-24','1994-01-01','1994-05-15'),format = '%Y-%m-%d')
+lifeB<-strptime(c('1922-03-01','1955-09-23','1993-07-21','1993-01-01','1993-03-01'),format = '%Y-%m-%d')
+lifeC<-strptime(c('1942-09-21','1967-06-02','1996-04-29','1996-01-01','1996-09-21'),format = '%Y-%m-%d')
+lifeA<-as.Date(lifeA)
+lifeB<-as.Date(lifeB)
+lifeC<-as.Date(lifeC)
+```
+
+### Age next birthday at death
+```{r}
+type1<-function(life){
+  floor(difftime(time1 =life[3],time2 = life[1],units = 'days')/365.25)+1
+  }
+Age_1_A<-as.numeric(type1(lifeA))
+Age_1_B<-as.numeric(type1(lifeB))
+Age_1_C<-as.numeric(type1(lifeC))
+cat("Age next birthday at death of life A:",Age_1_A)
+cat("Age next birthday at death of life B:",Age_1_B)
+cat("Age next birthday at death of life C:",Age_1_C)
+```
+### Age last birthday an 1 January preceding death
+```{r}
+type2<-function(life){
+  floor(difftime(time1 =life[4],time2 = life[1],units = 'days')/365.25)
+}
+Age_2_A<-as.numeric(type2(lifeA))
+Age_2_B<-as.numeric(type2(lifeB))
+Age_2_C<-as.numeric(type2(lifeC))
+cat("Age last birthday an 1 January preceding death of life A:",Age_2_A)
+cat("Age last birthday an 1 January preceding death of life B:",Age_2_B)
+cat("Age last birthday an 1 January preceding death of life C:",Age_2_C)
+```
+
+### Age at the birthday in the policy year of death
+```{r}
+type3<-function(life){
+  floor(difftime(time1 =life[5],time2 = life[1],units = 'days')/365.25)
+}
+Age_3_A<-as.numeric(type3(lifeA))
+Age_3_B<-as.numeric(type3(lifeB))
+Age_3_C<-as.numeric(type3(lifeC))
+cat("Age at the birthday in the policy year of death of life A:",Age_3_A)
+cat("Age at the birthday in the policy year of death of life B:",Age_3_B)
+cat("Age at the birthday in the policy year of death of life C:",Age_3_C)
+```

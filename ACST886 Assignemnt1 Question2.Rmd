@@ -1,0 +1,43 @@
+---
+title: "ACST886 Assignemnt1 Question2"
+author: "Chang Liu"
+date: "22/08/2019"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Question 2
+### part(a)
+The loan repaid is the same as the instalment we get from question 1.
+```{r}
+L<-600000
+instal<-32622.8
+int<-0.035
+L_rep<-instal
+L_rep
+```
+
+### part(b)
+
+```{r}
+Loan_offset<-100000
+Loan_oust<-L
+for (i in 1:30) {
+  if(Loan_oust>Loan_offset+instal){
+    
+    Interest_repaid<-(Loan_oust-Loan_offset)*int
+    Loan_repaid<-L_rep-Interest_repaid
+    Loan_oust<-Loan_oust-Loan_repaid
+  }else{break("This is the second last payment")}
+  
+}
+final<-Loan_oust*(1+int)-Loan_offset*int-Loan_offset
+cat("NO.of payment:",i)
+
+cat("final smaller payment:",final)
+
+```
